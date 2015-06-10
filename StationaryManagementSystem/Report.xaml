@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="StationaryManagementSystem.Report"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800" Background="White">
+    <Grid>
+      
+
+
+                <TabControl  Name="Tc"  >
+            <TabItem  Header="List of Books Sold" FontSize="14"   Height="50" >
+                <Grid>
+
+                    <DataGrid Name="BookSoldListDataGrid" ItemsSource="{Binding Path= Table}" FontSize="20" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"  BorderThickness="3" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" AlternatingRowBackground="Azure" Height="740"  >
+                        <DataGrid.Columns  >
+                            <DataGridTextColumn  Header="Sold Id" Width="120"     Binding="{Binding Path=so_id}"/>
+                            <DataGridTextColumn Header="Books Name" Width="auto"  Binding="{Binding Path=so_itemsname}"/>
+                            <DataGridTextColumn Header="Books Edition" Width="150"  Binding="{Binding Path=so_itemsedition}"/>
+                            <DataGridTextColumn Header="No. of Books" Width="150"  Binding="{Binding Path=so_noofitems}"/>
+                            <DataGridTextColumn Header="Total Price" Width="120"  Binding="{Binding Path=so_totalprice}"/>
+                            <DataGridTextColumn Header="Bill No." Width="120"  Binding="{Binding Path=so_billno}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    
+                </Grid>
+            </TabItem>
+
+            <TabItem   Header="List of Customer" FontSize="14"   Height="50" >
+
+                <Grid>
+
+                    <DataGrid Name="CustomerListDataGrid" ItemsSource="{Binding Path= Table}" FontSize="20" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"  BorderThickness="3" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" AlternatingRowBackground="Azure" Height="740"  >
+                        <DataGrid.Columns >
+                            <DataGridTextColumn  Header="Customer Name" Width="Auto" Binding="{Binding Path=cu_name}"/>
+                            <DataGridTextColumn Header="Mobile No." Width="auto"  Binding="{Binding Path=cu_mobileno}"/>
+                            <DataGridTextColumn Header="Date" Width="auto"  Binding="{Binding Path=date}"/>
+                            <DataGridTextColumn Header="Bill No." Width="auto"  Binding="{Binding Path=cu_billno}"/>
+                        
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                </Grid>
+                
+            </TabItem>
+
+            <TabItem  Header="Coming Soon" FontSize="14"   Height="50" >
+                <Grid>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+        
+    </Grid>
+</UserControl>

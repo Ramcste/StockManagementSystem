@@ -1,0 +1,414 @@
+﻿<UserControl x:Class="StockManagementSystem.Stock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="800" Background="White" d:DesignHeight="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Name="Tc" Grid.RowSpan="2" >
+
+            <TabItem Header="Stock Details" Height="35" Name="StockDetails"  VerticalAlignment="Bottom">
+                <Grid  Background="SkyBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Stock Details" FontSize="20" Height="35"/>
+
+                    <DataGrid Grid.Row="1" Name="StockDataGrid" FontSize="20" ItemsSource="{Binding Path=Table}" BorderThickness="3" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" AlternatingRowBackground="Azure" Initialized="StockDataGrid_Initialized" >
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Stock Id" Binding="{Binding Path=s_id}" Width="Auto"/>
+                            <DataGridTextColumn Header="No of Items Bought" Binding="{Binding Path=noofitems}" Width="Auto"/>
+                            <DataGridTextColumn Header="Stock Items Category" Binding="{Binding Path=s_category}" Width="Auto"/>
+                            <DataGridTextColumn Header="Stock Items Edition" Binding="{Binding Path=s_edition}" Width="Auto"/>
+                            <DataGridTextColumn Header="Total Purchase Cost" Binding="{Binding Path=s_pcost}" Width="Auto"/>
+                            <DataGridTextColumn Header="Purchasing Date" Binding="{Binding Path=s_pdate}" Width="Auto"/>
+                            <DataGridTextColumn Header="Buying Price" Binding="{Binding Path=items_buyingprice}" Width="Auto"/>
+                            <DataGridTextColumn Header="Selling Price" Binding="{Binding Path=items_sellingprice}" Width="Auto"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add Stock" Name="AddStock" Height="35">
+                <Grid Background="SkyBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="20"/>
+                  
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="Add New Stock Items" Height="45" FontSize="20" HorizontalAlignment="Center"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Stock Id:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="StockIdTextBox" Grid.Column="2" FontSize="20" Grid.Row="1" Height="35" />
+
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="No of Items Bought:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+
+                    <TextBox Name="ItemsBoughtTextBox" Grid.Column="2" FontSize="20"  Grid.Row="2" Height="35" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="Items Category:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <ComboBox Name="ItemsCategoryComboBox" FontSize="20" Grid.Column="2" Grid.Row="3" Height="35" />
+
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="Items Edition:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="ItemsEditionTextBox"   ToolTip="Edition should be the combination of digit and letters" FontSize="20" Grid.Column="2" Grid.Row="4" Height="35" />
+
+
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="Total Purchase Cost:" FontSize="20" HorizontalAlignment="Right" Height="45"/>
+
+                    <TextBox Name="TotalPurchasecostTextBox" Grid.Column="2" FontSize="20" Grid.Row="5" Height="35" />
+
+
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="Purchasing Date:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="DatePickerTextBox"    Grid.Column="2" Grid.Row="6" FontSize="20"  Height="35" />
+
+
+                    <Button Grid.Row="7" Grid.Column="2" Name="AddStockButton" Content="Add" Height="40" FontSize="20" Width="80" Click="AddStockButton_Click" />
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Update Stock"  Height="35">
+                <Grid Background="SkyBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="Update Stock Items" Height="45" FontSize="20" HorizontalAlignment="Center"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Stock Id:" Height="35" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <ComboBox Name="StockIdcomboBox" Grid.Column="2" FontSize="20" Grid.Row="1" Height="35" SelectionChanged="StockIdcomboBox_SelectionChanged" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Stock Update Id:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="StockUpdateIdTextBox" Grid.Column="2" Grid.Row="2" FontSize="20" Height="35" />
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="No. of Items Bought:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="ItemsBoughtBox" Grid.Column="2" Grid.Row="3" Height="35" FontSize="20" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="Items Category:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <ComboBox Name="ItemsCategoryBox" FontSize="20" Grid.Column="2" Grid.Row="4" Height="35" />
+
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="Items Edition:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <TextBox Name="editionBox" ToolTip="Edition should be the combination of digit and letters" FontSize="20" Grid.Column="2" Grid.Row="5" Height="35" />
+
+
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="Total Purchase Cost:" FontSize="20" HorizontalAlignment="Right" Height="45"/>
+
+                    <TextBox Name="TotalPurchasecostBox" Grid.Column="2" Grid.Row="6" Height="35"  FontSize="20"/>
+
+
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="Purchasing Date:" Height="45" HorizontalAlignment="Right"  FontSize="20"/>
+
+                    <DatePicker Name="DatePickerBox" Grid.Column="2" Grid.Row="7" FontSize="20"  Height="45" />
+
+
+                    <Button Grid.Row="8" Grid.Column="2" Name="UpdateStockButton" Content="Update" Height="40" FontSize="20" Width="80" Click="UpdateStockButton_Click" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Total Books" Height="35" Name="TotalBook" >
+                <Grid Background="SkyBlue" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Total Book List" FontSize="20"/>
+
+                    <DataGrid Grid.Row="1" Name="TotalBookListItem" ItemsSource="{Binding Path=Table}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" AlternatingRowBackground="Beige" BorderThickness="3"   FontSize="20" SelectedCellsChanged="TotalBookListItem_SelectedCellsChanged" Loaded="TotalBookListItem_Loaded" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Stock Id:" Binding="{Binding s_id}" Width="auto" />
+                            <DataGridTextColumn Header="Book Id" Binding="{Binding b_id}" Width="auto" />
+                            <DataGridTextColumn Header="Book Isbn" Binding="{Binding b_isbn}" Width="auto" />
+                            <DataGridTextColumn Header="Book Name" Binding="{Binding b_name}" Width="auto" />
+                            <DataGridTextColumn Header="Author 1" Binding="{Binding b_author1}" Width="auto" />
+                            <DataGridTextColumn Header="Author 2" Binding="{Binding b_author2}" Width="auto" />
+                            <DataGridTextColumn Header="Author 3" Binding="{Binding b_author3}" Width="auto" />
+                            <DataGridTextColumn Header="Publication" Binding="{Binding b_publication}" Width="auto" />
+                            
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add Book" Name="AddBook" Height="35">
+                <Grid Background="SkyBlue" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="140"/>
+                        
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Stock Id:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="StockIdBox" FontSize="20" Grid.Row="0" Grid.Column="2" Height="35" TextChanged="StockIdBox_TextChanged" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Book Id:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="BooksIdTextBox" Grid.Row="1" FontSize="20" Height="35" Grid.Column="2" />
+
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Book Isbn:" Height="35" HorizontalAlignment="Right"  FontSize="20" Margin="05" />
+
+                    <TextBox Name="BookIsbnTextBox" FontSize="20" Grid.Row="2" Grid.Column="2" Height="35"/>
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="Book Name:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="BookNameTextBox" FontSize="20" Grid.Row="3" Grid.Column="2" Height="35" />
+
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="Author Name1:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname1TextBox" FontSize="20" Grid.Row="4" Grid.Column="2" Height="35" />
+
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="Author Name2:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname2TextBox" FontSize="20" Grid.Row="5" Grid.Column="2" Height="35" />
+
+
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="Author Name3:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname3TextBox" FontSize="20" Grid.Row="6" Grid.Column="2" Height="35" />
+
+
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="Publication:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="PublicationTextBox" FontSize="20" Grid.Row="7" Grid.Column="2" Height="35"  />
+
+
+                    <TextBlock Grid.Row="8" Grid.Column="1" Text="Edition:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="EditionTextBox" Grid.Row="8" FontSize="20" Grid.Column="2" IsReadOnly="True" Height="35" />
+
+
+                    <TextBlock Grid.Row="9" Grid.Column="1" Text="Category:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="CategoryTextBox" FontSize="20" Grid.Row="9" Grid.Column="2" IsReadOnly="True" Height="35"  />
+                  
+
+                    <Button Name="AddBookDiscriptionButton" Grid.Row="10"  FontSize="20" Grid.Column="2" Content="Add" Height="40"  Width="120" Click="AddBookDiscriptionButton_Click" VerticalAlignment="Center"  />
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Edit Book" Name="EditBook" Height="35" Margin="-2,-1,-2,0" VerticalAlignment="Top">
+                <Grid Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                       
+
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="140"/>
+                        
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Book Id:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <ComboBox Name="BooksIdComboBox" FontSize="20" Grid.Row="0" Grid.Column="2" Height="35"  SelectionChanged="BooksIdComboBox_OnSelectionChanged" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Stock Id:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="StockIdbox" FontSize="20" Grid.Row="1" Grid.Column="2" Height="35" TextChanged="StockIdbox_TextChanged"/>
+
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Book Isbn:" Height="35" ToolTip="Book Isbn format is XXX-X-XX-XXXXXX-X or XXX-XX-XXX-XXXX-X" HorizontalAlignment="Right"  FontSize="20" Margin="05" />
+
+                    <TextBox Name="BookIsbnBox" Grid.Row="2" FontSize="20" Grid.Column="2" Height="35" />
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="Book Name:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="BookNameBox" FontSize="20" Grid.Row="3" Height="35" Grid.Column="2"/>
+
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="Author Name1:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname1Box" FontSize="20" Grid.Row="4" Height="35" Grid.Column="2"/>
+
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="Author Name2:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname2Box" FontSize="20" Grid.Row="5" Height="35" Grid.Column="2"/>
+
+
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="Author Name3:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="Authorname3Box" Grid.Row="6" FontSize="20" Height="35" Grid.Column="2"/>
+
+
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="Publication:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="PublicationBox" Grid.Row="7" Grid.Column="2" Height="35" FontSize="20" />
+
+
+                    <TextBlock Grid.Row="8" Grid.Column="1" Text="Edition:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="EditionBox" Grid.Row="8" FontSize="20" Height="35" Grid.Column="2"/>
+
+
+                    <TextBlock Grid.Row="9" Grid.Column="1" Text="Category:"  Height="35" HorizontalAlignment="Right" FontSize="20" Margin="05" />
+
+                    <TextBox Name="CategoryBox" Grid.Row="9" Grid.Column="2" FontSize="20" Height="35" IsReadOnly="True" />
+
+                
+                    <Button Name="UpdateBook" Grid.Row="10" Grid.Column="2" Content="Update" Height="40"  Width="120" Click="UpdateBook_Click" RenderTransformOrigin="1.175,0.95" Margin="69,0,68,5" VerticalAlignment="Bottom"  />
+
+
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Return Sold Books" >
+                <Grid  Background="SkyBlue">
+                    
+             <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+
+                    </Grid.RowDefinitions>       
+                    
+                 
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    
+                 
+                    <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="45" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold">Returning of Books Sold</Label>
+                    
+                    <Label Grid.Row="1" Grid.Column="1" Height="45" HorizontalAlignment="Right" FontSize="20">Enter Bill No:</Label>
+                    <TextBox Grid.Row="1" Grid.Column="2"  Name="ReturnBookBillnoTextBox" Height="45" FontSize="20"></TextBox>
+
+                    <Label Grid.Row="2" Grid.Column="1" Height="45" HorizontalAlignment="Right" FontSize="20">Book Name:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="2"  Name="ReturnBookNameTextBox" Height="45"  FontSize="20"></TextBox>
+  
+                    <Button Grid.Row="3" Grid.Column="2" Name="ReturnBookShowDetails" Height="45" Width="120" FontSize="20" Click="ReturnBookShowDetails_OnClick">show</Button> 
+                    
+                    <Label Grid.Row="4" Grid.Column="1" Height="45" HorizontalAlignment="Right" FontSize="20">Category:</Label>
+                    <TextBox Grid.Row="4" Grid.Column="2"  Name="ReturnBookCategoryTextBox" Height="45" FontSize="20" ></TextBox>
+
+                   
+                    <Label Grid.Row="5" Grid.Column="1" Height="45" HorizontalAlignment="Right" FontSize="20">No of Books:</Label>
+                    <TextBox Grid.Row="5" Grid.Column="2"  Name="ReturnBookNoofBooksTextBox" Height="45" FontSize="20" ></TextBox>
+
+                    <Button Grid.Row="6" Grid.Column="2" Height="45" HorizontalContentAlignment="Center" FontSize="20" Width="120" Name="ReturnBooksUpdate"  Click="ReturnBooksUpdate_OnClick">Update</Button>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+
+</UserControl>

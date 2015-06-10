@@ -1,0 +1,248 @@
+﻿<UserControl x:Class="StockManagementSystem.Action"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Background="White">
+    <Grid>
+        <TabControl  Name="Tc" >
+            <TabItem Header="CategoryList" Height="50" FontSize="14" Width="95">
+                <Grid Background="SkyBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Category List" HorizontalAlignment="Left" Margin="0,5,220,7" FontSize="20" Height="35"/>
+
+                    <DataGrid x:Name="CategoryListViewItem" FontSize="20"   CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"  ItemsSource="{Binding Path=Table}" Grid.Row="1" SelectedCellsChanged="CategoryListViewItem_SelectedCellsChanged" >
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Category Id:" Width="140" Binding="{Binding Path=c_id}"  />
+                            <DataGridTextColumn Header="Category Name:" Width="200"  Binding="{Binding Path=c_name}"/>
+                            <DataGridTextColumn Header="Subcategory Id:" Width="250"  Binding="{Binding Path=sc_id}"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Add Category" Height="50" FontSize="14" Width="98" Initialized="TabItem_Initialized" >
+                <Grid Background="SkyBlue" >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Add Category" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="20" />
+
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="160"/>
+
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Category Id:" Height="35" HorizontalAlignment="Right" />
+
+                        <TextBox Grid.Row="0" Grid.Column="2" Name="CategoryIdTextBox"  Height="35" Margin="10"  />
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Category Name:" Height="35" HorizontalAlignment="Right" />
+
+                        <TextBox Grid.Row="1"  Grid.Column="2" Name="CategoryNameTextBox" Margin="10" Height="35"  />
+
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Subcategory Name:"  HorizontalAlignment="Right" Height="35"/>
+
+                        <ComboBox Grid.Row="2"  Grid.Column="2" Name="SubcategoryNameComboBox" Margin="10" Height="35" />
+
+
+
+                        <Button Grid.Row="3"  Grid.Column="2" Content="Add" Name="AddCategoryButton"  Height="45" Width="120"  Click="AddCategoryButton_Click"  />
+
+
+                    </Grid>
+
+
+
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header=" Edit Category" Width="100" FontSize="14">
+                <Grid Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="280"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Edit Category" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="20" Grid.ColumnSpan="2" Width="239" />
+
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Category Id:" FontSize="20" Height="35"   Width="120" HorizontalAlignment="Right" />
+
+                    <ComboBox Grid.Row="1" Grid.Column="2" Name="CategoryIdComboBox"  Height="35" Margin="10"  SelectionChanged="CategoryIdComboBox_SelectionChanged" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Category Name:"  HorizontalAlignment="Right" Height="35" FontSize="20" />
+
+                    <TextBox Grid.Row="2"  Grid.Column="2" Name="CategoryNameBox" Margin="10"   Height="35"  />
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="Subcategory Name:" HorizontalAlignment="Right" Height="35" FontSize="20"  />
+
+                    <ComboBox Grid.Row="3"  Grid.Column="2" Name="SubcategoryNamecomboBox"   Height="35" Margin="10" />
+
+
+                    <Button Grid.Row="4" Grid.Column="2" Content="Update" Name="UpdateCategoryButton" Width="150" Margin="10" Height="40" Click="UpdateCategoryButton_Click"  />
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Subcategory List" FontSize="14" Height="50" Width="120">
+                <Grid Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Sub Category List:" HorizontalAlignment="Left"  FontSize="20" Height="35"/>
+
+                    <DataGrid Grid.Row="1" x:Name="SubcategoryListItem" ItemsSource="{Binding Path=Table}" FontSize="20" SelectedCellsChanged="SubcategoryListItem_SelectedCellsChanged" >
+                        
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Subcategory Id:"  Binding="{Binding Path = sc_id}"  />
+                            <DataGridTextColumn Header="Subcategory Name: "   Binding="{Binding Path = sc_name}"  />
+
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add Subcategory" FontSize="14" Width="120">
+
+                <Grid Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Add Subcategory:" HorizontalAlignment="Left" Margin="0,20,0,20" FontSize="20" />
+
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Subcategory Id:" FontSize="20" Height="35"   HorizontalAlignment="Right" />
+
+                    <TextBox Grid.Row="1" Grid.Column="2" Name="SubcategoryIdTextBox" Height="35" Margin="10"  />
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Subcategory Name:" HorizontalAlignment="Right" Height="35" FontSize="20" />
+
+                    <TextBox Grid.Row="2"  Grid.Column="2" Name="SubcategoryNameTextBox" Margin="10" Height="35"/>
+
+                    <Button Grid.Row="3" Grid.Column="2" Content="Add" Name="AddSubcategoryButton" Width="150" FontSize="20" Height="40" Click="AddSubcategoryButton_Click"  />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Edit Subcategory" FontSize="14" Width="120">
+                <Grid Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="160"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Edit User Type" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="20" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Subcategory Id:" FontSize="20" Height="35"  HorizontalAlignment="Right"  />
+
+                    <ComboBox Grid.Row="1" Grid.Column="2" Name="SubcategoryIdComboBox" Height="35" Margin="10"  SelectionChanged="SubcategoryIdComboBox_SelectionChanged" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Subcategory Name:" HorizontalAlignment="Right" Height="35" FontSize="20" />
+
+                    <TextBox Grid.Row="2"  Grid.Column="2" Name="SubcategoryNameBox" Margin="10" Height="35"/>
+
+                    <Button Grid.Row="3" Grid.Column="2" Content="Update" Name="UpdateSubcategoryButton" Width="150" Height="45" Click="UpdateSubcategoryButton_Click"  />
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</UserControl>

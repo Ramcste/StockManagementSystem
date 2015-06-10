@@ -1,0 +1,58 @@
+﻿<Window x:Class="StockManagementSystem.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+              
+        Title="Login Window" Height="600" Width="800">
+    <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Images/login.jpg" Grid.ColumnSpan="6" Grid.RowSpan="10" Stretch="UniformToFill" Margin="0,0,2,0" />
+
+        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="Blue" Text="Stock Management System" FontSize="30"  Height="50" Margin="104,16,126,16" Width="420" />
+
+        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="Blue" Text="Admin Login Window" FontSize="30"  Height="50" Margin="169,13,146,17" Width="335" />
+
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="User Name:"    HorizontalAlignment="Right" Foreground="Black" FontSize="20"  Height="35" Margin="0,7,3,7"/>
+
+        <TextBox Grid.Row="3" Grid.Column="2" Name="UsernameTextBox" Height="35" FontSize="20" Margin="279,8,1,7" Foreground="Black" Grid.ColumnSpan="2" />
+
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="Password:" HorizontalAlignment="Right"  FontSize="20" Foreground="Black" Height="35" Margin="0,8,3,6"/>
+
+        <PasswordBox Grid.Row="5" Grid.Column="3" Name="PasswordTextBox" Height="35" Margin="4,8,1,7" FontSize="20"/>
+
+        <CheckBox Grid.Row="7" Grid.Column="2" Name="RememberCheckBox" Height="35"  HorizontalAlignment="Right" Margin="0,13,0,2" />
+
+        <TextBlock Grid.Row="7" Grid.Column="3" Text="Remember Password" FontSize="20" Foreground="Black" Height="35" Margin="4,7,1,7" />
+
+
+        <Button Grid.Row="9" Grid.Column="2" HorizontalAlignment="Right" Name="LoginButton" Content="LogIn" Foreground="Black" Width="120" FontSize="20" Margin="10" Height="45" Click="LoginButton_Click"/>
+
+        <Button Grid.Row="9" Grid.Column="3" Margin="10" Name="ResetButton" HorizontalAlignment="Right" Content="Reset" FontSize="20" Foreground="Black" Width="120"  Height="45" Click="ResetButton_Click"/>
+
+
+
+
+    </Grid>
+</Window>

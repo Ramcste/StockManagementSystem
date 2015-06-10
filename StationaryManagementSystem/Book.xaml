@@ -1,0 +1,459 @@
+﻿<UserControl x:Class="StockManagementSystem.Book"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800" Background="White">
+
+
+    <Grid>
+        <TabControl Name="Tc">
+
+            <TabItem Header="Book List" Height="45" FontSize="20"  Width="120">
+                <Grid Background="SkyBlue" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="60"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1" Text="Select Category:"  HorizontalAlignment="Right"  FontSize="20" Width="180" Height="45"  />
+                        <ComboBox  Grid.Column="2" Name="categoryComboBox"   Width="250" HorizontalAlignment="Left" Height="45" FontSize="20" SelectionChanged="categoryComboBox_SelectionChanged" />
+                    </Grid>
+
+
+                    <DataGrid Grid.Row="1" Name="BookListView" ItemsSource="{Binding Path= Table}"   HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"  BorderThickness="3" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" AlternatingRowBackground="Azure"  >
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Book Id" Width="Auto" Binding="{Binding Path= b_id}"/>
+
+                            <DataGridTextColumn Header="Book Name" Width="Auto" Binding="{Binding Path= b_name}"/>
+
+                            <DataGridTextColumn Header="Publication" Width="Auto" Binding="{Binding Path= b_publication}"/>
+
+                            <DataGridTextColumn Header="Author 1" Width="Auto" Binding="{Binding Path= b_author1}"/>
+
+                            <DataGridTextColumn Header="Author 2" Width="Auto" Binding="{Binding Path= b_author2}"/>
+
+                            <DataGridTextColumn Header="Author 3" Width="Auto" Binding="{Binding Path= b_author3}"/>
+
+                            <DataGridTextColumn Header="Edition" Width="Auto" Binding="{Binding Path= s_edition}"/>
+
+                            <DataGridTextColumn Header="Selling Price" Width="Auto" Binding="{Binding Path= items_sellingprice}"/>
+
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Search" Width="150" Height="45" FontSize="20">
+                <Grid  Background="SkyBlue" ShowGridLines="True">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="60"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0"  ShowGridLines="True">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Book Name" Grid.Column="1" Margin="16,18,0,18" HorizontalAlignment="Left" Height="45" FontSize="20" Width="112" ></TextBlock>
+
+                        <RadioButton Grid.Column="0" Height="45" Name="NameRadioButton"  Margin="20"  HorizontalAlignment="Right" />
+
+                        <TextBlock Text="Author Name" Grid.Column="3" Margin="30,10,10,10" HorizontalAlignment="Left" Height="45" FontSize="20" ></TextBlock>
+
+                        <RadioButton Grid.Column="2" Height="45"  Margin="20"  HorizontalAlignment="Right" Name="AuthornameRadioButton"  />
+
+
+                        <TextBlock Text="Publication" Grid.Column="5" Margin="30,10,10,10" HorizontalAlignment="Left" Height="45" FontSize="20" ></TextBlock>
+
+                        <RadioButton Grid.Column="4" Height="45"   Margin="20"  HorizontalAlignment="Right" Name="PublicationRadioButton" />
+
+
+
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" ShowGridLines="True">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Enter For Search:"  HorizontalAlignment="Right" Height="45"   FontSize="20" />
+
+                        <TextBox Grid.Column="1" Name="SearchTextBox" Height="45" Margin="0,14,0,21" />
+
+                        <Button Grid.Column="2" Name="SearchButton" Content="Search" Height="45" Width="80" Click="SearchButton_Click" />
+
+                    </Grid>
+
+
+                    <DataGrid Grid.Row="2" Name="SearchedListViewItem"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"  ItemsSource="{Binding Path= Table}" >
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Book ISBN" Width="Auto" Binding="{Binding Path= b_isbn}"/>
+
+                            <DataGridTextColumn Header="Book Name" Width="Auto" Binding="{Binding Path= b_name}"/>
+
+                            <DataGridTextColumn Header="Publication" Width="Auto" Binding="{Binding Path= b_publication}"/>
+
+                            <DataGridTextColumn Header="Author 1" Width="Auto" Binding="{Binding Path= b_author1}"/>
+
+                            <DataGridTextColumn Header="Author 2" Width="Auto" Binding="{Binding Path= b_author2}"/>
+
+                            <DataGridTextColumn Header="Author 3" Width="Auto" Binding="{Binding Path= b_author3}"/>
+
+                            <DataGridTextColumn Header="Edition" Width="Auto" Binding="{Binding Path= s_edition}"/>
+
+                            <DataGridTextColumn Header="Selling Price" Width="Auto" Binding="{Binding Path= items_sellingprice}"/>
+
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Add to Chart" FontSize="20">
+                <Grid  Background="SkyBlue">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+
+
+                    </Grid.RowDefinitions>
+
+                    <Canvas Grid.Row="0">
+
+                        <TextBlock Canvas.Left="180" Canvas.Right="220" FontSize="20" Margin="0,8,0,0" Height="45" Text="Customer Menu" />
+
+                        <DatePicker Name="Todaysdate" FontSize="20" Canvas.Left="500" Margin="0,8,0,0" Canvas.Right="80"/>
+
+                    </Canvas>
+
+                    <Grid Grid.Row="1" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <GroupBox Header="Customer Information" >
+
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Bill No:" HorizontalAlignment="Right"/>
+
+                                <TextBox Grid.Row="0" Grid.Column="1" Height="35" Name="BillnoTextBox" Width="80" HorizontalAlignment="Left" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Height="35" Text="Customer Id:" HorizontalAlignment="Right"/>
+
+                                <TextBox Grid.Row="1" Grid.Column="1" Height="35" Name="CustomerIdTextBox" Width="80" HorizontalAlignment="Left" />
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Height="35" Text="Name:" HorizontalAlignment="Right"/>
+
+                                <TextBox Grid.Row="2" Grid.Column="1" Height="35" Name="NameTextBox"  />
+
+                                <TextBlock Grid.Column="0" Grid.Row="3" Height="35" Text="Mobile No:" HorizontalAlignment="Right"/>
+
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="MobilenoTextBox" Width="265" HorizontalAlignment="Left" Height="35" />
+
+
+
+                            </Grid>
+
+                        </GroupBox>
+
+                        <Grid Grid.Column="1">
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Category Name:" Height="40" HorizontalAlignment="Right"/>
+
+                            <ComboBox Grid.Column="1" Grid.Row="0" Height="35" Margin="0,0,20,0" Name="CategoryComboBox" SelectionChanged="CategoryComboBox_SelectionChanged"/>
+
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Book Name:" Height="40" HorizontalAlignment="Right"/>
+
+                            <ComboBox Grid.Column="1" Grid.Row="1" Height="35" Name="BooknameComboBox" Margin="0,0,20,0"  SelectionChanged="BooknameComboBox_SelectionChanged" />
+
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Unit Price:" Height="40" HorizontalAlignment="Right"/>
+
+                            <TextBox Grid.Column="1" Grid.Row="2" Height="35" Margin="0,0,20,0" Name="UnitpriceTextBox"/>
+
+
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Quantity:" Height="40" HorizontalAlignment="Right"/>
+
+                            <TextBox Grid.Column="1" Grid.Row="3" Height="35" Text="1" FontSize="20" ToolTip="Enter the number of book u want?" Margin="0,0,20,0" Name="QuantityTextBox" />
+
+
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="Discount(%):" Height="40" HorizontalAlignment="Right"/>
+
+                            <ComboBox Grid.Column="1" Grid.Row="4" FontSize="20" Height="35" Name="DiscountComboBox" Margin="0,0,20,0" >
+
+                                <ComboBoxItem>None</ComboBoxItem>
+                                <ComboBoxItem>5%</ComboBoxItem>
+                                <ComboBoxItem>10%</ComboBoxItem>
+
+
+                            </ComboBox>
+
+                            <Button Grid.Column="1" Grid.Row="5" Name="CalculateButton" Width="120" Height="45" Content="Calculate" FontSize="20" Click="CalculateButton_Click" />
+
+                            <TextBlock Grid.Column="0" Grid.Row="6" Text="Total:" Height="45" HorizontalAlignment="Right"/>
+
+                            <TextBox Grid.Column="1" Grid.Row="6" Height="35" Name="TotalTextBox" Margin="0,0,20,0"/>
+
+
+
+                        </Grid>
+
+
+                    </Grid>
+
+
+                    <Grid Grid.Row="2">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1" Height="40" Width="150" Content="Add to Chart" Name="AddButton" Click="AddButton_Click"  />
+
+
+                    </Grid>
+
+
+                    <DataGrid Grid.Row="3" Name="BuyingDataGrid"  ItemsSource="{Binding Path=Table}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"  Width="Auto"  >
+
+                        <DataGrid.Columns>
+
+
+                            <DataGridTextColumn Header="Book Name"  Width="Auto" Binding="{Binding Path= so_itemsname}"/>
+
+                            <DataGridTextColumn Header="Book Edition"  Width="Auto" Binding="{Binding Path= so_itemsedition}"/>
+
+                            <DataGridTextColumn Header="Book Category"  Width="Auto" Binding="{Binding Path= so_itemscategory}"/>
+
+                            <DataGridTextColumn Header="No of Items"  Width="Auto" Binding="{Binding Path= so_noofitems}"/>
+
+                            <DataGridTextColumn Header="Total Price"  Width="Auto" Binding="{Binding Path= so_totalprice}"/>
+
+
+
+                        </DataGrid.Columns>
+
+
+                    </DataGrid>
+
+
+                    <Grid Grid.Row="4">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Grand Price(Tk.):" FontSize="20" Height="40" Width="150"  HorizontalAlignment="Right"/>
+
+                        <TextBox Grid.Column="1" Name="GrandPriceTextBox" Width="120" Height="40" HorizontalAlignment="Left" />
+
+                        <Button Grid.Column="4" Height="40" Width="120" Content="Sell" Name="SellButton" Click="SellButton_Click"   />
+
+
+                    </Grid>
+
+
+
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Invoice" Name="Invoice" FontSize="20" Width="150" Height="45"  >
+
+                <Grid Background="SkyBlue" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Row="0" Text="Ramesh Stock Management System" HorizontalAlignment="Center"  Height="50" FontSize="20"/>
+
+                    <TextBlock Grid.Row="1" Text="50/2(First Floor) Maijdeecourt,Independent Tower Noakhali-3824,Bangladesh" HorizontalAlignment="Center" Height="50" FontSize="20"/>
+
+                    <TextBlock Grid.Row="2" Text="Tel:983777,9456732,Mobile no:+8801740169744,+88017246659402" FontSize="20" HorizontalAlignment="Center" Height="50" />
+
+
+                    <Grid Grid.Row="3" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Height="35" Text="Bill No:" FontSize="20" HorizontalAlignment="Right"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="2" Height="45" FontSize="20" Name="BillPrintTextBox"  MinWidth="75" Margin="0,5,320,0" />
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Height="35" Text="Customer Name:" FontSize="20" HorizontalAlignment="Right"/>
+
+                        <TextBox Grid.Row="1" Grid.Column="2" Height="45" FontSize="20" Name="CustomernameBox" />
+
+                        <TextBlock Grid.Column="1" Grid.Row="2" Height="45" Text="Customer Mobile No:" FontSize="20" HorizontalAlignment="Right"/>
+
+                        <TextBox Grid.Row="2" Grid.Column="2" Height="45" FontSize="20" Name="CustomerMobilenoBox"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="2" Height="45" Text="List of Bought Books" FontSize="30" HorizontalAlignment="Center" />
+                    </Grid>
+
+
+
+                    <DataGrid Grid.Row="4" Grid.RowSpan="2" Name="BuyingItem" ItemsSource="{Binding Path=Table}" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  AutoGenerateColumns="False">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Book Name" Binding="{Binding Path= so_itemsname}" Width="auto" />
+
+                            <DataGridTextColumn Header="Book Edition" Binding="{Binding Path= so_itemsedition}" Width="auto" />
+
+                            <DataGridTextColumn Header="Book Category" Binding="{Binding Path= so_itemscategory}" Width="auto" />
+
+                            <DataGridTextColumn Header="No of Items" Binding="{Binding Path= so_noofitems}" Width="auto" />
+
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding Path= so_totalprice}" Width="auto" />
+
+
+                        </DataGrid.Columns>
+
+
+
+                    </DataGrid>
+
+                    <Grid Grid.Row="6" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1"  Text="Grand Price(Tk.):" FontSize="20" Height="40" Width="150"  HorizontalAlignment="Left" Margin="37,13,0,7"/>
+                        <TextBox x:Name="GrandPriceDisplayTextBox" Width="120" Height="40" HorizontalAlignment="Left" Grid.Column="1" Margin="197,8,0,12" />
+
+
+                        <Button Grid.Column="2" Name="PrintBillButton" Width="120" Content="Print Bill"   FontSize="20"    Click="PrintBillButton_Click" Margin="210,9,7,7" />
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</UserControl>

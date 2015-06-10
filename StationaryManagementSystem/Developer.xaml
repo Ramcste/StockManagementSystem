@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="StockManagementSystem.Developer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Background="Gray">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+
+
+        <Image HorizontalAlignment="Left" Height="350" Margin="235,0,0,0" Source="/Images/102727 NET-3.jpg" Stretch="UniformToFill" VerticalAlignment="Top" Width="315" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="235,35,0,-70" Grid.Row="2" TextWrapping="Wrap"  FontFamily="Arial" 
+                   
+                   Text="
+                   
+                   
+                     
+                   
+                        Name : Rambabu Prasad Kushwaha                            
+                   
+                        Email : lucky.guyram@gmail.com
+                         
+                        Mobile no : +8801740169744" 
+                   
+                   VerticalAlignment="Top" Height="215" Width="325"/>
+
+
+
+    </Grid>
+</UserControl>
